@@ -1,14 +1,11 @@
 import os
-import json
 import random
 import time
 import threading
-import requests
 from datetime import datetime
 from telegram import Update
 from telegram.ext import Application, CommandHandler, ContextTypes
 
-# TOKEN SUDAH DIMASUKKAN
 TOKEN = "8849664954:AAFZIDi61ZVnrIEpkiQ8yozIjuU4FSnEqj8"
 
 class SpamBot:
@@ -61,7 +58,7 @@ class SpamBot:
                 status = self.send_request(platform, phone)
                 results.append(f"✅ {platform}: {status}")
                 time.sleep(0.5)
-            except Exception as e:
+            except:
                 results.append(f"❌ {platform}: Gagal")
         
         summary = f"""
@@ -80,15 +77,7 @@ class SpamBot:
         del self.active_users[user_id]
     
     def send_request(self, platform, phone):
-        headers = {
-            'User-Agent': 'Mozilla/5.0 (Linux; Android 11) AppleWebKit/537.36',
-            'Content-Type': 'application/json'
-        }
-        
-        # Simulasi request ke platform
         time.sleep(random.uniform(0.5, 1.5))
-        
-        # 80% berhasil
         if random.random() > 0.2:
             return "OTP Terkirim"
         else:
